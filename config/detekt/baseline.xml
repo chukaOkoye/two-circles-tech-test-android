@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>MagicNumber:MatchDetailReducer.kt$MatchDetailReducer$3</ID>
+    <ID>TooGenericExceptionCaught:BaseApi.kt$BaseApi$e: Exception</ID>
+    <ID>UnusedParameter:MatchDetailApi.kt$MatchDetailApi$id: Int</ID>
+  </CurrentIssues>
+</SmellBaseline>
