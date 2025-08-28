@@ -23,18 +23,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.chrissloan.superscoreboard.fixtures.domain.FixtureUIModel
 import com.chrissloan.superscoreboard.model.Fixture
 
 @Composable
-fun FixtureRowScores(fixture: Fixture) {
-    val home = fixture.fixtureTeams?.getOrNull(0)
-    val away = fixture.fixtureTeams?.getOrNull(1)
-    val clockText = fixture.clock?.label ?: ""
-
-    val homeAbbr = home?.team?.club?.abbr ?: "—"
-    val awayAbbr = away?.team?.club?.abbr ?: "—"
-    val homeScore = home?.score?.toString() ?: "-"
-    val awayScore = away?.score?.toString() ?: "-"
+fun FixtureRowScores(fixturesUIModel: FixtureUIModel) {
 
     Row(
         modifier = Modifier
@@ -45,7 +38,7 @@ fun FixtureRowScores(fixture: Fixture) {
             .padding(horizontal = 12.dp, vertical = 10.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        TeamBadgeWithName(name = homeAbbr)
+        TeamBadgeWithName(name = fixturesUIModel.homeAbbr)
 
         Spacer(Modifier.width(10.dp))
 
@@ -55,7 +48,7 @@ fun FixtureRowScores(fixture: Fixture) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                homeScore,
+                fixturesUIModel.homeScore,
                 style = MaterialTheme.typography.displayMedium,
                 fontWeight = FontWeight.Bold
             )
@@ -72,7 +65,7 @@ fun FixtureRowScores(fixture: Fixture) {
             contentAlignment = Alignment.Center
         ) {
             Text(
-                clockText,
+                fixturesUIModel.clockText,
                 style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold),
                 color = Color.White
             )
@@ -86,7 +79,7 @@ fun FixtureRowScores(fixture: Fixture) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                awayScore,
+                fixturesUIModel.awayScore,
                 style = MaterialTheme.typography.displayMedium,
                 fontWeight = FontWeight.Bold
             )
@@ -94,7 +87,7 @@ fun FixtureRowScores(fixture: Fixture) {
 
         Spacer(Modifier.width(10.dp))
 
-        TeamBadgeWithName(name = awayAbbr)
+        TeamBadgeWithName(name = fixturesUIModel.awayAbbr)
     }
 }
 

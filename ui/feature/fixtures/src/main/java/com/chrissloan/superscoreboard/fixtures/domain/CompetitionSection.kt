@@ -4,5 +4,5 @@ import com.chrissloan.superscoreboard.model.Fixture
 
 data class CompetitionSection(
     val competition: String?,
-    val fixtures: List<Fixture>
+    val fixtures: List<FixtureUIModel>
 )

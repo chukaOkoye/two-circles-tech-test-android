@@ -1,11 +1,14 @@
 package com.chrissloan.superscoreboard.fixtures.viewmodel
 
+import android.R.id.home
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chrissloan.superscoreboard.fixtures.domain.FixtureActivityUIState
 import com.chrissloan.superscoreboard.fixtures.FixtureListRepository
 import com.chrissloan.superscoreboard.fixtures.domain.CompetitionSection
+import com.chrissloan.superscoreboard.fixtures.domain.FixtureUIModel
+import com.chrissloan.superscoreboard.fixtures.screens.extractTime
 import com.chrissloan.superscoreboard.model.Fixture
 import com.chrissloan.superscoreboard.model.Fixtures
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -53,8 +56,29 @@ class FixturesViewModel(
             .map { (competition, group) ->
                 CompetitionSection(
                     competition = competition,
-                    fixtures = group.sortedBy { it.competition?.title }
+                    fixtures = group.sortedBy { it.competition?.title }.map {
+                        mapToFixtureUI(it)
+                    }
                 )
             }
+    }
+
+    private fun mapToFixtureUI(fixture: Fixture): FixtureUIModel {
+        val homeAbbr = fixture.fixtureTeams?.getOrNull(0)?.team?.club?.abbr ?: "—"
+        val awayAbbr = fixture.fixtureTeams?.getOrNull(1)?.team?.club?.abbr ?: "—"
+        val kickoffTime = fixture.kickoff?.label?.let(::extractTime) ?: "-"
+        val clockText = fixture.clock?.label ?: ""
+        val homeScore = fixture.fixtureTeams?.getOrNull(0)?.score.toString()
+        val awayScore = fixture.fixtureTeams?.getOrNull(0)?.score.toString()
+
+        return FixtureUIModel(
+            homeAbbr = homeAbbr,
+            awayAbbr = awayAbbr,
+            homeScore = homeScore,
+            awayScore = awayScore,
+            kickoffTime = kickoffTime,
+            fixture = fixture,
+            clockText = clockText
+        )
     }
 }

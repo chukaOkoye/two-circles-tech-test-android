@@ -18,16 +18,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.chrissloan.superscoreboard.fixtures.domain.FixtureUIModel
 import com.chrissloan.superscoreboard.model.Fixture
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
 @Composable
-fun FixtureRowKickoff(fixture: Fixture) {
-    val homeAbbr = fixture.fixtureTeams?.getOrNull(0)?.team?.club?.abbr ?: "—"
-    val awayAbbr = fixture.fixtureTeams?.getOrNull(1)?.team?.club?.abbr ?: "—"
-    val kickoffText = fixture.kickoff?.label?.let(::extractTime) ?: "-"
+fun FixtureRowKickoff(fixturesUIModel: FixtureUIModel) {
 
     Row(
         modifier = Modifier
@@ -46,7 +44,7 @@ fun FixtureRowKickoff(fixture: Fixture) {
             modifier = Modifier.weight(1f),
             horizontalArrangement = Arrangement.End,
             verticalAlignment = CenterVertically
-        ) { Text(homeAbbr, style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold) }
+        ) { Text(fixturesUIModel.homeAbbr, style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold) }
 
         Spacer(Modifier.width(16.dp))
 
@@ -58,7 +56,7 @@ fun FixtureRowKickoff(fixture: Fixture) {
                 .padding(horizontal = 10.dp, vertical = 6.dp),
             contentAlignment = Alignment.Center
         ) {
-            Text(kickoffText, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
+            Text(fixturesUIModel.kickoffTime, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
         }
 
         Spacer(Modifier.width(16.dp))
@@ -68,7 +66,7 @@ fun FixtureRowKickoff(fixture: Fixture) {
             modifier = Modifier.weight(1f),
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = CenterVertically
-        ) { Text(awayAbbr, style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold) }
+        ) { Text(fixturesUIModel.awayAbbr, style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold) }
 
         Spacer(Modifier.width(10.dp))
         CrestPlaceholder()

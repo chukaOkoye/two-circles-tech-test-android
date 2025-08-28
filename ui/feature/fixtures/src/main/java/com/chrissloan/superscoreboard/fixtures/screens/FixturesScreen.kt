@@ -107,11 +107,11 @@ fun FixturesScreen(
                     }
 
                     // Fixtures
-                    items(section.fixtures) { fixture ->
-                        when (fixture.status) {
-                            "C", "I" -> FixtureRowScores(fixture)
-                            "U" -> FixtureRowKickoff(fixture)
-                            else -> FixtureRowKickoff(fixture)
+                    items(section.fixtures) { fixtureUI ->
+                        when (fixtureUI.fixture.status) {
+                            "C", "I" -> FixtureRowScores(fixtureUI)
+                            "U" -> FixtureRowKickoff(fixtureUI)
+                            else -> FixtureRowKickoff(fixtureUI)
                         }
                     }
                 }
