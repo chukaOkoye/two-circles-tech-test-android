@@ -13,7 +13,7 @@ import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.chrissloan.superscoreboard.fixtures.FixturesScreen
+import com.chrissloan.superscoreboard.fixtures.screens.FixturesScreen
 import com.chrissloan.superscoreboard.theme.SuperScoreBoardTheme
 
 class MainActivity : ComponentActivity() {

@@ -1,11 +1,60 @@
 package com.chrissloan.superscoreboard.fixtures.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.chrissloan.superscoreboard.fixtures.domain.FixtureActivityUIState
 import com.chrissloan.superscoreboard.fixtures.FixtureListRepository
+import com.chrissloan.superscoreboard.fixtures.domain.CompetitionSection
+import com.chrissloan.superscoreboard.model.Fixture
+import com.chrissloan.superscoreboard.model.Fixtures
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class FixturesViewModel(
-    fixtureListRepository: FixtureListRepository,
+    private val fixtureListRepository: FixtureListRepository,
 ) : ViewModel() {
 
-    val fixtures = fixtureListRepository.getFixtures()
+    private val _uiState = MutableStateFlow<FixtureActivityUIState>(FixtureActivityUIState.Loading)
+    val uiState = _uiState.asStateFlow()
+
+    fun fetchFixtures() {
+        _uiState.value = FixtureActivityUIState.Loading
+
+        viewModelScope.launch {
+            fixtureListRepository.getFixtures()
+                .collectLatest { result ->
+                    result.onSuccess { fixtures ->
+                        val sections = groupByCompetition(fixtures)
+                        _uiState.value =
+                            if (sections.isEmpty()) {
+                                FixtureActivityUIState.Success(fixtures = emptyList())
+                            } else {
+                                FixtureActivityUIState.Success(fixtures = sections)
+                            }
+                    }
+                        .onFailure { e ->
+                            _uiState.value = FixtureActivityUIState.Error(
+                                message = e.message ?: "Something went wrong"
+                            )
+                        }
+                }
+        }
+    }
+
+    private fun groupByCompetition(matches: Fixtures): List<CompetitionSection> {
+        val list = matches.fixtures
+        if (list.isEmpty()) return emptyList()
+
+        return list
+            .groupBy { it.competition?.title }
+            .map { (competition, group) ->
+                CompetitionSection(
+                    competition = competition,
+                    fixtures = group.sortedBy { it.competition?.title }
+                )
+            }
+    }
 }

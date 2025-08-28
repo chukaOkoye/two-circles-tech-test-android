@@ -41,6 +41,11 @@ espressoCore = "3.7.0"
 junit = "4.13.2"
 junitVersion = "1.3.0"
 mockk = "1.14.5"
+archCoreVersion = "2.2.0"
+coroutinesTestingVersion = "1.8.1"
+
+assertJVersion = "1.2.0"
+
 
 
 [libraries]
@@ -86,6 +91,8 @@ koin-core = { module = "io.insert-koin:koin-core" }
 # Coroutines
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
+assertj = { group = "com.squareup.assertj", name = "assertj-android", version.ref = "assertJVersion"}
+
 
 # Static Analysis & Build Tools
 detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detektFormatting" }
@@ -95,6 +102,10 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+androidx-arch-core = { group = "androidx.arch.core", name = "core-testing", version.ref = "archCoreVersion"}
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+
+coroutines-testing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutinesTestingVersion"}
 
 [plugins]
 # Android and Kotlin Plugins

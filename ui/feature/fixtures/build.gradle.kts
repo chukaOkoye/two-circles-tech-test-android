@@ -39,6 +39,13 @@ android {
     lint {
         baseline = file("lint-baseline.xml")
     }
+    sourceSets {
+        getByName("main") {
+            java {
+                srcDirs("src/main/java", "src/test", "src/main/java/2")
+            }
+        }
+    }
 }
 
 dependencies {
@@ -59,6 +66,11 @@ dependencies {
     implementation(libs.koin.androidx.compose.navigation)
 
     implementation(libs.kotlinx.datetime)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockk)
+    androidTestImplementation(libs.mockk)
+    testImplementation(libs.androidx.arch.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -66,4 +78,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    testImplementation(libs.assertj)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.androidx.ui.test.junit4)
 }

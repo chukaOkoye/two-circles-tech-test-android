@@ -36,3 +36,28 @@ For all your up to the minute scores from around the globe.
 ## Candidate Notes
 
 (Add your notes here: approach, assumptions, trade-offs, anything you’d like us to know.)
+
+## How to run
+- Have all dependencies synced in the `libs.versions.toml` and `build.gradle.kts` file.
+- Click RUN
+- For tests: navigate to test folder, right-click files and click "Run `test filename`"
+
+## Tech used
+- Kotlin/Jetpack Compose
+- MVVM
+- Coroutines
+- Mockk
+- JUnit
+
+## My Approach
+- I took time to understand the data being pulled from the api to determine what and how to display the various items, like the kick-off time due to the status and the scores, and how the design can be implemented based on those values before undertaking the app.
+- Added to the starter project but made additional changes to the repository layer to include try/catch for api calls, allowed for more testing of the Results outcome. Also made additional changes to the viewmodel to handle different UI states.
+- To get the layout as close as possible to the design, I used the Digital Colour Meter program to get accurate colour values from the Figma page (native colours and fonts was not displayed).
+- **Model** - Contains data models and handles data operations through a Repository abstraction, kept the same due to the correct data models being in place already.
+- **ViewModel** - FixtureViewModel manages UI state, business logic, and interacts with the repository. It exposes the state as StateFlow for Compose to observe but also orders the main view by competition as requested in the design.
+- **View (UI)** - Composable like FixturesScreen render UI based on the current uiState, and depending on the status of the game would display the layout suited for it, like FixtureRowScoresScreen for current games undergoing. 
+- I added additional tests to the repository using JUnit and Mockk to confirm that the code is working correctly, and if I had more time would\ve implemented tests for the ViewModel as well.
+
+## Future implementations
+- Potential database implementation to cache and store the responses to still work whilst offline.
+- Rework the fixture ui module to allow for unit tests to run like the ViewModel, didn't have enough time to organise and implement but repository was tested.

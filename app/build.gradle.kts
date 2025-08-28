@@ -109,6 +109,7 @@ dependencies {
     implementation(libs.androidx.runtime)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.coil.network.okhttp)
+    testImplementation(libs.mockk)
 
     androidTestImplementation(libs.androidx.monitor)
     androidTestImplementation(libs.junit)
