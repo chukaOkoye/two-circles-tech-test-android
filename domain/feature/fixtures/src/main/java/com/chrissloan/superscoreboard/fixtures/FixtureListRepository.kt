@@ -4,5 +4,5 @@ import com.chrissloan.superscoreboard.model.Fixtures
 import kotlinx.coroutines.flow.Flow
 
 interface FixtureListRepository {
-    fun getFixtures(): Flow<Fixtures>
+    fun getFixtures(): Flow<Result<Fixtures>>
 }

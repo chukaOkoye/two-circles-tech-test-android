@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 
@@ -30,9 +31,20 @@ class FixtureListRepositoryImplTest {
             val expectedFixtures = Fixtures(listOf(sampleFixture))
             coEvery { fixturesApi.getFixtures() } returns expectedFixtures
 
-            val actualFixtures = fixtureListRepository.getFixtures().first()
+            val result = fixtureListRepository.getFixtures().first()
 
-            assertEquals(expectedFixtures, actualFixtures)
+            assertTrue(result.isSuccess)
+            assertEquals(expectedFixtures, result.getOrNull())
+        }
+
+    @Test
+    fun `getFixtures returns failure from api`() =
+        runTest {
+            coEvery { fixturesApi.getFixtures() }.throws(IllegalStateException())
+
+            val result = fixtureListRepository.getFixtures().first()
+
+            assertTrue(result.isFailure)
         }
 
     @Test
