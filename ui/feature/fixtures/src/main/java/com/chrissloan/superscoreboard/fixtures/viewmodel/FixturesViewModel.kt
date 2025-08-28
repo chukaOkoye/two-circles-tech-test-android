@@ -56,7 +56,7 @@ class FixturesViewModel(
             .map { (competition, group) ->
                 CompetitionSection(
                     competition = competition,
-                    fixtures = group.sortedBy { it.competition?.title }.map {
+                    fixtures = group.sortedByDescending { it.kickoff?.label }.map {
                         mapToFixtureUI(it)
                     }
                 )
