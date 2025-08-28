@@ -62,6 +62,6 @@ For all your up to the minute scores from around the globe.
 - Potential database implementation to cache and store the responses to still work whilst offline.
 - Rework the fixture ui module to allow for unit tests to run like the ViewModel. I didn't have enough time to organise and implement, but the repository was tested.
 
-- ## Screenshot
+## Screenshot
 <img width="463" height="760" alt="Screenshot 2025-08-28 at 21 23 25" src="https://github.com/user-attachments/assets/1a2b94aa-bbfe-445c-821a-e18dd45fdb97" />
 
