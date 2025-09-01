@@ -1,7 +1,5 @@
 package com.chrissloan.superscoreboard.fixtures.viewmodel
 
-import android.R.id.home
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chrissloan.superscoreboard.fixtures.domain.FixtureActivityUIState
@@ -11,6 +9,7 @@ import com.chrissloan.superscoreboard.fixtures.domain.FixtureUIModel
 import com.chrissloan.superscoreboard.fixtures.screens.extractTime
 import com.chrissloan.superscoreboard.model.Fixture
 import com.chrissloan.superscoreboard.model.Fixtures
+import com.chrissloan.superscoreboard.theme.R
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -47,6 +46,15 @@ class FixturesViewModel(
         }
     }
 
+    private fun getIconForCompetition(title: String?): Int? {
+        return when(title){
+            "Premier League" -> R.drawable.premier_league
+            "Champions League" -> R.drawable.champions_league
+            else -> null
+        }
+
+    }
+
     private fun groupByCompetition(matches: Fixtures): List<CompetitionSection> {
         val list = matches.fixtures
         if (list.isEmpty()) return emptyList()
@@ -56,6 +64,7 @@ class FixturesViewModel(
             .map { (competition, group) ->
                 CompetitionSection(
                     competition = competition,
+                    competitionIcon = getIconForCompetition(competition),
                     fixtures = group.sortedByDescending { it.kickoff?.label }.map {
                         mapToFixtureUI(it)
                     }
