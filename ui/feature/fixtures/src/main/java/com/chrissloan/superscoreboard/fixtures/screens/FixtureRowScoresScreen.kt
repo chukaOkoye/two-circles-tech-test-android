@@ -19,12 +19,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.chrissloan.superscoreboard.fixtures.domain.FixtureUIModel
 import com.chrissloan.superscoreboard.model.Fixture
+import com.chrissloan.superscoreboard.theme.R
 
 @Composable
 fun FixtureRowScores(fixturesUIModel: FixtureUIModel) {
@@ -49,8 +53,8 @@ fun FixtureRowScores(fixturesUIModel: FixtureUIModel) {
         ) {
             Text(
                 fixturesUIModel.homeScore,
-                style = MaterialTheme.typography.displayMedium,
-                fontWeight = FontWeight.Bold
+                fontFamily = FontFamily(Font(R.font.druk_wide_bold, FontWeight.Normal)),
+                fontSize = 34.sp
             )
         }
 
@@ -58,16 +62,17 @@ fun FixtureRowScores(fixturesUIModel: FixtureUIModel) {
 
         Box(
             modifier = Modifier
-                .clip(RoundedCornerShape(6.dp))
-                .background(color = Color.Red)
-                .width(75.dp)
-                .padding(horizontal = 10.dp, vertical = 6.dp),
+                .clip(RoundedCornerShape(4.dp))
+                .background(color = Color(191, 31, 37))
+                .width(55.dp)
+                .padding(horizontal = 10.dp, vertical = 4.dp),
             contentAlignment = Alignment.Center
         ) {
             Text(
                 fixturesUIModel.clockText,
-                style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold),
-                color = Color.White
+                style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Normal),
+                color = Color.White,
+                fontSize = 12.sp
             )
         }
 
@@ -80,8 +85,9 @@ fun FixtureRowScores(fixturesUIModel: FixtureUIModel) {
         ) {
             Text(
                 fixturesUIModel.awayScore,
-                style = MaterialTheme.typography.displayMedium,
-                fontWeight = FontWeight.Bold
+                fontFamily = FontFamily(Font(R.font.druk_wide_bold, FontWeight.Normal)),
+                fontSize = 34.sp
+
             )
         }
 
@@ -106,7 +112,11 @@ private fun TeamBadgeWithName(
             text = name,
             style = MaterialTheme.typography.labelMedium,
             maxLines = 1,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
+            fontSize = 14.sp,
+            color = Color(60, 60, 67),
+            fontFamily = FontFamily.SansSerif
+
         )
     }
 }

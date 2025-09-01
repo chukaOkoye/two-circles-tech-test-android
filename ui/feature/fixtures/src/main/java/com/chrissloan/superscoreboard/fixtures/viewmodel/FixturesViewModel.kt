@@ -78,7 +78,7 @@ class FixturesViewModel(
             awayScore = awayScore,
             kickoffTime = kickoffTime,
             fixture = fixture,
-            clockText = clockText
+            clockText = clockText.dropLast(2)
         )
     }
 }
