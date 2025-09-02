@@ -48,14 +48,15 @@ For all your up to the minute scores from around the globe.
 - Coroutines
 - Mockk
 - JUnit
+- Figma
 
 ## My Approach
 - I took time to understand the data being pulled from the api to determine what and how to display the various items, like the kick-off time due to the status and the scores, and how the design can be implemented based on those values before undertaking the app.
 - Added to the starter project but made additional changes to the repository layer to include try/catch for api calls, allowed for more testing of the Results outcome and also made additional changes to the viewmodel to handle different UI states.
-- To get the layout as close as possible to the design, I used the Digital Colour Meter program to get accurate colour values from the Figma page (native colours and fonts were not displayed).
+- To get the layout as close as possible to the design, I used the Digital Colour Meter program to get accurate colour values from the Figma page (only when native colours were not displayed).
 - **Model** - Contains data models and handles data operations through a Repository abstraction, kept the same due to the correct data models being in place already.
 - **ViewModel** - FixtureViewModel manages UI state, business logic, and interacts with the repository. It exposes the state as a StateFlow for Compose to observe, while also ordering the main view by competition as requested in the design. I also Added a mapper function to map various score and team name options to the screens and keep the UI as light as possible.
-- **View (UI)** - Composable like FixturesScreen render UI based on the current uiState, and depending on the status of the game, would display the layout suited for it, like FixtureRowScoresScreen for current games undergoing.
+- **View (UI)** - Composable like FixturesScreen render UI based on the current uiState, and depending on the status of the game, would display the layout suited for it, like FixtureRowScoresScreen for current games undergoing. Added the various drawables like the competition icons and face-off background as displayed in the design.
 - I added additional tests to the repository using JUnit and Mockk to confirm that the code is working correctly, and if I had more time would have implemented tests for the ViewModel as well.
 
 ## Future implementations
