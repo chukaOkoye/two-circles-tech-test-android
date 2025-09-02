@@ -42,7 +42,6 @@ fun FixtureRowKickoff(fixturesUIModel: FixtureUIModel) {
         verticalAlignment = CenterVertically
     ) {
         CrestPlaceholder()
-        Spacer(Modifier.width(10.dp))
 
         // Home abbr
         Row(
@@ -84,7 +83,6 @@ fun FixtureRowKickoff(fixturesUIModel: FixtureUIModel) {
                 fontSize = 16.sp)
         }
 
-        Spacer(Modifier.width(10.dp))
         CrestPlaceholder()
     }
 }

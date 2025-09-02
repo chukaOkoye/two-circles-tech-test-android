@@ -44,8 +44,6 @@ fun FixtureRowScores(fixturesUIModel: FixtureUIModel) {
     ) {
         TeamBadgeWithName(name = fixturesUIModel.homeAbbr)
 
-        Spacer(Modifier.width(10.dp))
-
         Row(
             modifier = Modifier.weight(1f),
             horizontalArrangement = Arrangement.End,
@@ -90,8 +88,6 @@ fun FixtureRowScores(fixturesUIModel: FixtureUIModel) {
 
             )
         }
-
-        Spacer(Modifier.width(10.dp))
 
         TeamBadgeWithName(name = fixturesUIModel.awayAbbr)
     }
