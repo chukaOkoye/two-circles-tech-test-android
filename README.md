@@ -65,7 +65,8 @@ For all your up to the minute scores from around the globe.
 - Rework the fixture UI module to allow for unit tests to run like the ViewModel. I didn't have enough time to organise and implement, but the repository was tested.
 
 ## Screenshot
-<img width="439" height="850" alt="Screenshot 2025-09-02 at 01 08 39" src="https://github.com/user-attachments/assets/8b2526bd-6418-40d9-ba8f-bc82f76bce2a" />
+<img width="719" height="1129" alt="Screenshot 2025-09-02 at 09 35 51" src="https://github.com/user-attachments/assets/6fad377c-3fd9-439f-8828-fedb33402453" />
+
 
 
 
